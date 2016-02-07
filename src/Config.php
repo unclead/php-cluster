@@ -1,8 +1,8 @@
 <?php
 
-namespace unclead\phpcluster;
+namespace PhpCluster;
 
-use unclead\phpcluster\exceptions\InvalidConfigurationException;
+use PhpCluster\Exception\InvalidConfigurationException;
 
 /**
  * Class Config
@@ -57,12 +57,13 @@ class Config
                     break;
                 case 'partner-ports':
                     $ports = explode(',', $value);
-                    array_walk($ports, create_function('&$val', '$val = trim($val);'));
+                    array_walk($ports, function(&$val) {
+                        $val = trim($val);
+                    });
                     $ports = array_filter($ports);
                     $this->partnerPorts = $ports;
                     break;
                 default:
-                    echo 'Undefined options: ' . $name . PHP_EOL;
                     break;
             }
         }

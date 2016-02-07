@@ -1,12 +1,12 @@
 <?php
 
-namespace unclead\phpcluster\exceptions;
+namespace PhpCluster\Exception;
 
 use Exception;
 
 /**
  * Class InvalidConfigurationException
- * @package unclead\phpcluster\exceptions
+ * @package PhpCluster\Exception
  */
 class InvalidConfigurationException extends Exception
 {

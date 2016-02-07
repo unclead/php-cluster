@@ -1,11 +1,10 @@
 <?php
 
-namespace unclead\phpcluster;
+namespace PhpCluster;
 
 
 /**
  * Class ConsoleLogger
- * @package unclead\phpcluster
  */
 class ConsoleLogger
 {
@@ -63,16 +62,12 @@ class ConsoleLogger
     public function log($msg, $type)
     {
         $labels = [
-            self::TYPE_INFO     => 'INFO',
+            self::TYPE_INFO     => 'INFO....',
             self::TYPE_WARNING  => 'WARNING',
-            self::TYPE_DEBUG    => 'DEBUG',
-            self::TYPE_ERROR    => 'ERROR'
+            self::TYPE_DEBUG    => 'DEBUG...',
+            self::TYPE_ERROR    => 'ERROR...'
         ];
-        echo sprintf(
-            '%s [%s] %s' . PHP_EOL,
-            date('Y-m-d H:i:s'),
-            $labels[$type],
-            $msg
-        );
+
+        echo sprintf('%s [%s] %s' . PHP_EOL, date('Y-m-d H:i:s'), $labels[$type], $msg);
     }
 }

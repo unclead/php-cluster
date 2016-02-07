@@ -1,12 +1,9 @@
 <?php
 
-namespace unclead\phpcluster\collections;
-
-use unclead\phpcluster\models\Cmd;
+namespace PhpCluster;
 
 /**
  * Class CmdCollection
- * @package unclead\phpcluster\collections
  */
 class CmdCollection
 {
@@ -64,5 +61,14 @@ class CmdCollection
     public function isEmpty()
     {
         return count($this->data) == 0;
+    }
+
+    public function __toString()
+    {
+        $result = [];
+        foreach ($this->all() as $id => $entity) {
+            $result[$id] = $entity->getCount();
+        }
+        return json_encode($result);
     }
 }

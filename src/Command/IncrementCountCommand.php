@@ -1,14 +1,14 @@
 <?php
 
-namespace unclead\phpcluster\commands;
+namespace PhpCluster\Command;
 
-use unclead\phpcluster\models\Cmd;
+use PhpCluster\Cmd;
 
 /**
  * Class IncrementCommand
- * @package unclead\phpcluster\commands
+ * @package PhpCluster\Command
  */
-class IncrementCommand extends BaseCommand
+class IncrementCountCommand implements Command
 {
     /**
      * @var Cmd

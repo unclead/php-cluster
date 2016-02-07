@@ -3,12 +3,13 @@
   "require": {
     "react/react": "*",
     "phroute/phroute": "*",
-    "guzzlehttp/guzzle": "~6.0"
+    "guzzlehttp/guzzle": "~6.0",
+    "arvenil/ninja-mutex": "*"
 
   },
   "autoload": {
     "psr-4": {
-      "unclead\\phpcluster\\": "src/"
+      "PhpCluster\\": "src/"
     }
   }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace unclead\phpcluster;
+namespace PhpCluster;
 
 use Exception;
 use React\EventLoop\LoopInterface;
@@ -11,9 +11,7 @@ use React\Socket\Server as ServerSocket;
 use React\Http\Server as HttpServer;
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
-use unclead\phpcluster\collections\CmdCollection;
-use unclead\phpcluster\commands\InitCollectionCommand;
-use unclead\phpcluster\controllers\CmdController;
+use PhpCluster\Command\PopulateCollectionCommand;
 use Phroute\Phroute\Exception\HttpMethodNotAllowedException;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
@@ -91,9 +89,10 @@ class Application
 
     private function afterInit()
     {
-        $this->getLogger()->info('Sync collection with other instances in cluster');
-        $command = new InitCollectionCommand($this->getCmdCollection(), $this->getConfig());
+        $this->getLogger()->debug('Sync collection with other instances in cluster');
+        $command = new PopulateCollectionCommand($this->getCmdCollection(), $this->getConfig());
         $command->execute();
+        $this->getLogger()->debug('Current collection state: ' . $this->getCmdCollection());
     }
 
     /**
@@ -110,14 +109,14 @@ class Application
     {
         $this->router = new RouteCollector();
         $this->router->get('/cmd{id:\d+}', function($id) {
-            $controller = new CmdController($this);
+            $controller = new Controller($this);
 
             $content = $controller->actionIncrement($id);
             return $content;
         });
 
         $this->router->get('/cmd', function() {
-            $controller = new CmdController($this);
+            $controller = new Controller($this);
             $this->responseContentType = 'application/json';
             $content = $controller->actionSummary();
             return $content;
@@ -126,7 +125,7 @@ class Application
         $this->router->post('/cmd{id:\d+}', function($id) {
             $this->request->on('data', function($data) use ($id){
                 parse_str($data, $data);
-                $controller = new CmdController($this);
+                $controller = new Controller($this);
                 $content = $controller->actionUpdate($id, $data);
                 return $content;
             });

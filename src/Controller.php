@@ -1,18 +1,26 @@
 <?php
 
-namespace unclead\phpcluster\controllers;
+namespace PhpCluster;
 
-use unclead\phpcluster\commands\UpdateCommand;
-use unclead\phpcluster\models\Cmd;
-use unclead\phpcluster\commands\IncrementCommand;
-use unclead\phpcluster\commands\SyncCommand;
+use PhpCluster\Command\UpdateCountCommand;
+use PhpCluster\Command\IncrementCountCommand;
+use PhpCluster\Command\SyncCommand;
 
 /**
- * Class CmdController
- * @package unclead\phpcluster\controllers
+ * Class Controller
  */
-class CmdController extends BaseController
+class Controller
 {
+    /**
+     * @var Application
+     */
+    protected $context;
+
+    public function __construct($context)
+    {
+        $this->context = $context;
+    }
+
     /**
      * Perfomr increment action.
      *
@@ -23,8 +31,10 @@ class CmdController extends BaseController
     {
         $entity = $this->findEntity($id);
 
-        $command = new IncrementCommand($entity);
+        $command = new IncrementCountCommand($entity);
         $content = $command->execute();
+
+        $this->context->getLogger()->info('IncrementCountCommand completed successfully. Result: ' . $content);
 
         $config = $this->context->getConfig();
         foreach ($config->getPartnerPorts() as $port) {
@@ -57,9 +67,10 @@ class CmdController extends BaseController
         }
 
         $entity = $this->findEntity($id);
-        $command = new UpdateCommand($entity, $data['count']);
+        $command = new UpdateCountCommand($entity, $data['count']);
         $command->execute();
 
+        $this->context->getLogger()->info('UpdateCountCommand completed successfully.');
         return true;
     }
 
@@ -91,7 +102,7 @@ class CmdController extends BaseController
         $collection = $this->context->getCmdCollection();
 
         if (!$collection->has($id)) {
-            $this->context->getLogger()->debug('Command instance for ID: ' . $id . ' is not initialized. Perform initialization.');
+            $this->context->getLogger()->debug('Cmd instance for ID: ' . $id . ' not found. Perform initialization.');
             $cmd = new Cmd();
             $collection->set($id, $cmd);
         }

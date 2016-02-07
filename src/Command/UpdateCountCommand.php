@@ -1,14 +1,14 @@
 <?php
 
-namespace unclead\phpcluster\commands;
+namespace PhpCluster\Command;
 
-use unclead\phpcluster\models\Cmd;
+use PhpCluster\Cmd;
 
 /**
  * Class UpdateCommand
- * @package unclead\phpcluster\commands
+ * @package PhpCluster\Command
  */
-class UpdateCommand extends BaseCommand
+class UpdateCountCommand implements Command
 {
     /**
      * @var Cmd

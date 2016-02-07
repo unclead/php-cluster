@@ -1,17 +1,17 @@
 <?php
 
-namespace unclead\phpcluster\commands;
+namespace PhpCluster\Command;
 
 use GuzzleHttp\Client;
-use unclead\phpcluster\collections\CmdCollection;
-use unclead\phpcluster\Config;
-use unclead\phpcluster\models\Cmd;
+use PhpCluster\CmdCollection;
+use PhpCluster\Config;
+use PhpCluster\Cmd;
 
 /**
  * Class PopulateCollectionCommand
- * @package unclead\phpcluster\commands
+ * @package PhpCluster\Command
  */
-class InitCollectionCommand extends BaseCommand
+class PopulateCollectionCommand implements Command
 {
     /**
      * @var CmdCollection

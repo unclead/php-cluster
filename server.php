@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use unclead\phpcluster\Application;
+use PhpCluster\Application;
 
 $app = new Application($argv);
 $app->run();

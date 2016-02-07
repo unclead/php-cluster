@@ -1,14 +1,14 @@
 <?php
 
-namespace unclead\phpcluster\commands;
+namespace PhpCluster\Command;
 
 use GuzzleHttp\Client;
 
 /**
  * Class SyncCommand
- * @package unclead\phpcluster\commands
+ * @package PhpCluster\Command
  */
-class SyncCommand extends BaseCommand
+class SyncCommand implements Command
 {
     /**
      * @var int
