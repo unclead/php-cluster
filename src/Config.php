@@ -11,7 +11,7 @@ use PhpCluster\Exception\InvalidConfigurationException;
 class Config
 {
     /**
-     * @var int the port that listens to the application
+     * @var int the port on which the application runs
      */
     private $port;
 
