@@ -1,0 +1,14 @@
+{
+  "minimum-stability": "stable",
+  "require": {
+    "react/react": "*",
+    "phroute/phroute": "*",
+    "guzzlehttp/guzzle": "~6.0"
+
+  },
+  "autoload": {
+    "psr-4": {
+      "unclead\\phpcluster\\": "src/"
+    }
+  }
+}
