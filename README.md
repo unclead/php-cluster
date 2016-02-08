@@ -34,7 +34,13 @@ When you start a new instance it also synchronizes with other instances.
 1) Unsure that you have composer on your machine. If you do not already have Composer installed, you may do so by 
 following the instructions at [getcomposer.org](https://getcomposer.org/download/)
 
-2) Run `composer install` command
+2) Clone the repo
+
+```
+git clone git@github.com:unclead/php-cluster.git
+```
+
+3) Run `composer install` command inside application directory.
 
 ## Using
 
