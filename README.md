@@ -113,6 +113,6 @@ php server.php --port=8084 --host='127.0.0.1' --partner-ports='8083,8081'
 
 - prevent race condition. For example use mutex for this purpose.
 - implement web services manager to start/stop/add instance
-- improve `partner-port` option to be able use a range of ports, e.g. 8081-8085
-- implement ability to start web service instances of different ip's
+- improve `partner-ports` option to be able use a range of ports, e.g. 8081-8085
+- implement ability to start web service instances on different ip's
 
